@@ -73,7 +73,7 @@ namespace GoonCrates
             return possibleWordsRefined;
         }
 
-        internal static string GetSuggestedLetter(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
+        internal static char GetSuggestedLetter(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
         {
             List<string> words = GetPossibleWords(wordSize, knownLettersWithPosition, excludedLetters);
             int[] letterCounter = new int[91];
@@ -84,14 +84,14 @@ namespace GoonCrates
                     letterCounter[new string(new char[] { letter }).ToUpper()[0]]++;
                 }
             }
-            string suggestedLetter = "?";
+            char suggestedLetter = ' ';
             int count = 0;
             for(int i = 0; i < letterCounter.Length; i++)
             {
                 if(letterCounter[i] > count && knownLettersWithPosition.Contains((char)i) == false)
                 {
                     count = letterCounter[i];
-                    suggestedLetter = ((char)i).ToString();
+                    suggestedLetter = (char)i;
                 }
             }
             return suggestedLetter;

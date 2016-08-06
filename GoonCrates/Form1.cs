@@ -117,11 +117,34 @@ namespace GoonCrates
             if (checkBoxY.Checked) excludedLetters.Add('Y');
             if (checkBoxZ.Checked) excludedLetters.Add('Z');
 
+            char[] excludeLettersArray = excludedLetters.ToArray();
 
-            List<string> words = Program.GetPossibleWords(currentWordSize, knownLetters, excludedLetters.ToArray());
+            List<string> words = Program.GetPossibleWords(currentWordSize, knownLetters, excludeLettersArray);
             labelPossibleWords.Text = string.Join(" ", words);
 
-            labelNextGuess.Text = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray()).ToString();
+            char suggestedLetter = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludeLettersArray);
+            labelNextGuess.Text = suggestedLetter.ToString();
+
+            excludedLetters.Add(suggestedLetter);
+            char suggestedLetter2 = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray());
+
+            excludedLetters.Add(suggestedLetter2);
+            char suggestedLetter3 = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray());
+
+            excludedLetters.Add(suggestedLetter3);
+            char suggestedLetter4 = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray());
+
+            excludedLetters.Add(suggestedLetter4);
+            char suggestedLetter5 = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray());
+
+            excludedLetters.Add(suggestedLetter5);
+            char suggestedLetter6 = Program.GetSuggestedLetter(currentWordSize, knownLetters, excludedLetters.ToArray());
+
+            labelNextGuess2.Text = suggestedLetter2.ToString();
+            labelNextGuess3.Text = suggestedLetter3.ToString();
+            labelNextGuess4.Text = suggestedLetter4.ToString();
+            labelNextGuess5.Text = suggestedLetter5.ToString();
+            labelNextGuess6.Text = suggestedLetter6.ToString();
         }
 
         private char? GetCharOrNull(TextBox textBox)
@@ -161,6 +184,13 @@ namespace GoonCrates
             textBox7.Text = "";
             textBox8.Text = "";
             textBox9.Text = "";
+
+            labelNextGuess.Text = "";
+            labelNextGuess2.Text = "";
+            labelNextGuess3.Text = "";
+            labelNextGuess4.Text = "";
+            labelNextGuess5.Text = "";
+            labelNextGuess6.Text = "";
 
             checkBoxA.Checked = false;
             checkBoxB.Checked = false;

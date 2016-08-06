@@ -74,13 +74,20 @@
             this.labelPossibleWords = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelNextGuess = new System.Windows.Forms.Label();
+            this.labelNextGuess2 = new System.Windows.Forms.Label();
+            this.labelNextGuess3 = new System.Windows.Forms.Label();
+            this.labelNextGuess4 = new System.Windows.Forms.Label();
+            this.labelNextGuess5 = new System.Windows.Forms.Label();
+            this.labelNextGuess6 = new System.Windows.Forms.Label();
             this.groupBoxLettersNotFoundInPassword.SuspendLayout();
             this.groupBoxKnownLetters.SuspendLayout();
             this.groupBoxWordLength.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -685,7 +692,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.labelNextGuess);
+            this.groupBox2.Controls.Add(this.flowLayoutPanel2);
             this.groupBox2.Location = new System.Drawing.Point(3, 146);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(405, 63);
@@ -693,16 +700,87 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Next Guess";
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess);
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess2);
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess3);
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess4);
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess5);
+            this.flowLayoutPanel2.Controls.Add(this.labelNextGuess6);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(399, 44);
+            this.flowLayoutPanel2.TabIndex = 1;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
             // labelNextGuess
             // 
-            this.labelNextGuess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNextGuess.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.labelNextGuess.Location = new System.Drawing.Point(3, 16);
+            this.labelNextGuess.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess.Location = new System.Drawing.Point(3, 0);
             this.labelNextGuess.Name = "labelNextGuess";
-            this.labelNextGuess.Size = new System.Drawing.Size(399, 44);
+            this.labelNextGuess.Size = new System.Drawing.Size(50, 44);
             this.labelNextGuess.TabIndex = 0;
             this.labelNextGuess.Text = "_";
             this.labelNextGuess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelNextGuess2
+            // 
+            this.labelNextGuess2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess2.ForeColor = System.Drawing.Color.DimGray;
+            this.labelNextGuess2.Location = new System.Drawing.Point(59, 0);
+            this.labelNextGuess2.Name = "labelNextGuess2";
+            this.labelNextGuess2.Size = new System.Drawing.Size(50, 44);
+            this.labelNextGuess2.TabIndex = 0;
+            this.labelNextGuess2.Text = "_";
+            this.labelNextGuess2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelNextGuess3
+            // 
+            this.labelNextGuess3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess3.ForeColor = System.Drawing.Color.Gray;
+            this.labelNextGuess3.Location = new System.Drawing.Point(115, 0);
+            this.labelNextGuess3.Name = "labelNextGuess3";
+            this.labelNextGuess3.Size = new System.Drawing.Size(50, 44);
+            this.labelNextGuess3.TabIndex = 0;
+            this.labelNextGuess3.Text = "_";
+            this.labelNextGuess3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelNextGuess4
+            // 
+            this.labelNextGuess4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess4.ForeColor = System.Drawing.Color.DarkGray;
+            this.labelNextGuess4.Location = new System.Drawing.Point(171, 0);
+            this.labelNextGuess4.Name = "labelNextGuess4";
+            this.labelNextGuess4.Size = new System.Drawing.Size(50, 44);
+            this.labelNextGuess4.TabIndex = 0;
+            this.labelNextGuess4.Text = "_";
+            this.labelNextGuess4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelNextGuess5
+            // 
+            this.labelNextGuess5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess5.ForeColor = System.Drawing.Color.Silver;
+            this.labelNextGuess5.Location = new System.Drawing.Point(227, 0);
+            this.labelNextGuess5.Name = "labelNextGuess5";
+            this.labelNextGuess5.Size = new System.Drawing.Size(50, 44);
+            this.labelNextGuess5.TabIndex = 0;
+            this.labelNextGuess5.Text = "_";
+            this.labelNextGuess5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelNextGuess6
+            // 
+            this.labelNextGuess6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextGuess6.ForeColor = System.Drawing.Color.LightGray;
+            this.labelNextGuess6.Location = new System.Drawing.Point(283, 0);
+            this.labelNextGuess6.Name = "labelNextGuess6";
+            this.labelNextGuess6.Size = new System.Drawing.Size(50, 44);
+            this.labelNextGuess6.TabIndex = 0;
+            this.labelNextGuess6.Text = "_";
+            this.labelNextGuess6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -723,6 +801,8 @@
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -774,6 +854,12 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label labelNextGuess;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label labelNextGuess2;
+        private System.Windows.Forms.Label labelNextGuess3;
+        private System.Windows.Forms.Label labelNextGuess4;
+        private System.Windows.Forms.Label labelNextGuess5;
+        private System.Windows.Forms.Label labelNextGuess6;
     }
 }
 
