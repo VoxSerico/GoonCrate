@@ -1,4 +1,7 @@
-﻿V1.2
+﻿V1.2.1
+Fixed assembly version number
+
+V1.2
 Improved letter suggestions to reach the correct word in fewer steps.
 Improved the pattern matching to exclude word suggestions where a known letter occurs in the suggested word, but not in the place of the known pattern.
 Used letters are grayed out from being selected as not in the password.
