@@ -218,6 +218,35 @@ namespace GoonCrates
             checkBoxX.Checked = false;
             checkBoxY.Checked = false;
             checkBoxZ.Checked = false;
+
+            checkBoxA.Enabled = true;
+            checkBoxB.Enabled = true;
+            checkBoxC.Enabled = true;
+            checkBoxD.Enabled = true;
+            checkBoxE.Enabled = true;
+            checkBoxF.Enabled = true;
+            checkBoxG.Enabled = true;
+            checkBoxH.Enabled = true;
+            checkBoxI.Enabled = true;
+            checkBoxJ.Enabled = true;
+            checkBoxK.Enabled = true;
+            checkBoxL.Enabled = true;
+            checkBoxM.Enabled = true;
+            checkBoxN.Enabled = true;
+            checkBoxO.Enabled = true;
+            checkBoxP.Enabled = true;
+            checkBoxQ.Enabled = true;
+            checkBoxR.Enabled = true;
+            checkBoxS.Enabled = true;
+            checkBoxT.Enabled = true;
+            checkBoxU.Enabled = true;
+            checkBoxV.Enabled = true;
+            checkBoxW.Enabled = true;
+            checkBoxX.Enabled = true;
+            checkBoxY.Enabled = true;
+            checkBoxZ.Enabled = true;
+
+
             skipEvaluation = false;
             Evaluate();
         }
@@ -237,6 +266,48 @@ namespace GoonCrates
             {
                 return;
             }
+
+            char?[] knownLetters = new char?[]{
+                GetCharOrNull(textBox1)
+                ,GetCharOrNull(textBox2)
+                ,GetCharOrNull(textBox3)
+                ,GetCharOrNull(textBox4)
+                ,GetCharOrNull(textBox5)
+                ,GetCharOrNull(textBox6)
+                ,GetCharOrNull(textBox7)
+                ,GetCharOrNull(textBox8)
+                ,GetCharOrNull(textBox9)
+            };
+
+            var distinctKnownLetters = knownLetters.Distinct();
+
+            checkBoxA.Enabled = !distinctKnownLetters.Contains('A');
+            checkBoxB.Enabled = !distinctKnownLetters.Contains('B');
+            checkBoxC.Enabled = !distinctKnownLetters.Contains('C');
+            checkBoxD.Enabled = !distinctKnownLetters.Contains('D');
+            checkBoxE.Enabled = !distinctKnownLetters.Contains('E');
+            checkBoxF.Enabled = !distinctKnownLetters.Contains('F');
+            checkBoxG.Enabled = !distinctKnownLetters.Contains('G');
+            checkBoxH.Enabled = !distinctKnownLetters.Contains('H');
+            checkBoxI.Enabled = !distinctKnownLetters.Contains('I');
+            checkBoxJ.Enabled = !distinctKnownLetters.Contains('J');
+            checkBoxK.Enabled = !distinctKnownLetters.Contains('K');
+            checkBoxL.Enabled = !distinctKnownLetters.Contains('L');
+            checkBoxM.Enabled = !distinctKnownLetters.Contains('M');
+            checkBoxN.Enabled = !distinctKnownLetters.Contains('N');
+            checkBoxO.Enabled = !distinctKnownLetters.Contains('O');
+            checkBoxP.Enabled = !distinctKnownLetters.Contains('P');
+            checkBoxQ.Enabled = !distinctKnownLetters.Contains('Q');
+            checkBoxR.Enabled = !distinctKnownLetters.Contains('R');
+            checkBoxS.Enabled = !distinctKnownLetters.Contains('S');
+            checkBoxT.Enabled = !distinctKnownLetters.Contains('T');
+            checkBoxU.Enabled = !distinctKnownLetters.Contains('U');
+            checkBoxV.Enabled = !distinctKnownLetters.Contains('V');
+            checkBoxW.Enabled = !distinctKnownLetters.Contains('W');
+            checkBoxX.Enabled = !distinctKnownLetters.Contains('X');
+            checkBoxY.Enabled = !distinctKnownLetters.Contains('Y');
+            checkBoxZ.Enabled = !distinctKnownLetters.Contains('Z');
+
             Evaluate();
         }
     }

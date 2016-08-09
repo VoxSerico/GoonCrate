@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GoonCrates.Properties {
+namespace GoonCratesMetrics.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace GoonCrates.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GoonCrates.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GoonCratesMetrics.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,16 +57,6 @@ namespace GoonCrates.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to five@=acorn@,acute@,bongo@,beeps@,crass@,crime@,drain@,drops@,easel@,earns@,flame@,freak@,ghost@,group@,hello@,horse@,ideal@,igloo@,jumps@,jazzy@,kills@,knife@,later@,leaps@,mouth@,maybe@,noose@,night@,opine@,odors@,prick@,piled@,queen@,quote@,rainy@,rules@,sting@,scary@,trine@,tread@,urine@,unary@,vices@,video@,where@,wring@,xenia@,xenon@,yells@,yodel@,zebra@,zooms
-        ///seven@=abandon@,aerobic@,buddies@,bottoms@,crackle@,capital@,dankest@,dissent@,elysian@,earplug@,fateful@,fuchsia@,gaseous@,goodbye@,heinous@, [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string password_pool {
-            get {
-                return ResourceManager.GetString("password_pool", resourceCulture);
             }
         }
     }

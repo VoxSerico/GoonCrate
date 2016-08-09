@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace GoonCrates
 {
-    enum WordSize
+    public enum WordSize
     {
         FIVE, SEVEN, NINE
     }
-    static class Program
+    public static class Program
     {
         static string[] wordsSize5;
         static string[] wordsSize7;
@@ -30,8 +30,9 @@ namespace GoonCrates
             Application.Run(new Form1());
         }
 
-        private static void BuildWordList()
+        public static void BuildWordList()
         {
+            //string[] wordGroups = Properties.Resources.password_pool.ToUpper().Split(new string[] { "\r\n" }, 
             string[] wordGroups = Properties.Resources.password_pool.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < wordGroups.Length; i++)
             {
@@ -51,7 +52,7 @@ namespace GoonCrates
             }
         }
 
-        internal static List<string> GetPossibleWords(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
+        public static List<string> GetPossibleWords(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
         {
             if (wordSize == WordSize.FIVE && knownLettersWithPosition.Length != 5)
                 throw new ArgumentException("wordSize and knownLettersWithPosition mismatch");
@@ -62,7 +63,7 @@ namespace GoonCrates
 
             List<string> possibleWords = new List<string>();
             List<string> possibleWordsRefined = new List<string>();
-            excludeWordsBasedOnLetters(wordSize, excludedLetters, possibleWords);
+            GetAllWordsAndExcludeWordsBasedOnLetters(wordSize, excludedLetters, possibleWords);
             foreach(string word in possibleWords)
             {
                 if (matchesPattern(word, knownLettersWithPosition))
@@ -73,50 +74,137 @@ namespace GoonCrates
             return possibleWordsRefined;
         }
 
-        internal static char GetSuggestedLetter(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
+        public static char GetSuggestedLetter(WordSize wordSize, char?[] knownLettersWithPosition, char[] excludedLetters)
         {
             List<string> words = GetPossibleWords(wordSize, knownLettersWithPosition, excludedLetters);
-            int[] letterCounter = new int[91];
-            foreach(string word in words)
+            if(words.Count <= 1)
             {
-                foreach(char letter in word)
+                return ' ';
+            }
+            int[] letterCounter = CountLettersInWords(words);
+            char suggestedLetter = GetMostCommmonLetter(knownLettersWithPosition, letterCounter);
+
+            int index = -1;
+            bool similar = true;
+            foreach (string word in words)
+            {
+                if (index == -1)
                 {
-                    letterCounter[new string(new char[] { letter }).ToUpper()[0]]++;
+                    index = word.IndexOf(suggestedLetter);
+                    continue;
+                }
+
+                if (word.IndexOf(suggestedLetter) != index)
+                {
+                    similar = false;
+                    break;
                 }
             }
-            char suggestedLetter = ' ';
-            int count = 0;
-            for(int i = 0; i < letterCounter.Length; i++)
+
+            if (similar)
             {
-                if(letterCounter[i] > count && knownLettersWithPosition.Contains((char)i) == false)
+                bool[] areSimilarLetters = new bool[knownLettersWithPosition.Length];
+                string firstWord = null;
+                foreach (string word in words)
+                {
+                    if (string.IsNullOrEmpty(firstWord))
+                    {
+                        firstWord = word;
+                        continue;
+                    }
+
+                    for (int pos = 0; pos < word.Length; pos++)
+                    {
+                        areSimilarLetters[pos] = word[pos] == firstWord[pos];
+                    }
+                }
+                List<char> similarLetters = new List<char>();
+                for (int pos = 0; pos < firstWord.Length; pos++)
+                {
+                    if (areSimilarLetters[pos])
+                    {
+                        similarLetters.Add(firstWord.ToUpper()[pos]);
+                    }
+                }
+                letterCounter = CountLettersInWords(words);
+                foreach (char letter in similarLetters)
+                {
+                    letterCounter[letter - 'A'] = 0;
+                }
+                suggestedLetter = GetMostCommmonLetter(knownLettersWithPosition, letterCounter);
+            }
+
+            return suggestedLetter;
+        }
+
+        private static char GetMostCommmonLetter(char?[] knownLettersWithPosition, int[] letterCounter)
+        {
+            char suggestedLetter = ' ';
+
+            // Select the most common letter
+            int count = 0;
+            for (int i = 0; i < letterCounter.Length; i++)
+            {
+                // Don't pick letters we already know
+                if (letterCounter[i] > count && knownLettersWithPosition.Contains((char)('A' + i)) == false)
                 {
                     count = letterCounter[i];
-                    suggestedLetter = (char)i;
+                    suggestedLetter = (char)('A' + i);
                 }
             }
+
             return suggestedLetter;
+        }
+
+        private static int[] CountLettersInWords(List<string> words)
+        {
+            // Count the occurances of letters in the entire word list
+            int[] letterCounter = new int['Z' - 'A' + 1];
+            foreach (string word in words)
+            {
+                string uppercaseWord = word.ToUpper();
+                foreach (char letter in uppercaseWord)
+                {
+                    letterCounter[letter - 'A']++;
+                }
+            }
+
+            return letterCounter;
         }
 
         private static bool matchesPattern(string word, char?[] pattern)
         {
-            bool result = true;
+            word = word.ToUpper();
+            bool matchesPatternSoFar = true;
+
+            var knownLetters = pattern.Distinct().ToList();
+
             for (int position = 0; position < word.Length && position < pattern.Length; position++)
             {
-                char? letter = pattern[position];
-                if (letter == null || letter < 'A' || letter > 'Z')
+                char? letterFromPattern = pattern[position];
+
+                if (letterFromPattern == null || letterFromPattern < 'A' || letterFromPattern > 'Z')
                 {
-                    continue;
+                    // Pattern shows empty, but the word has a known letter in it. E.g. ****es* (dankest) sadness
+                    if (knownLetters.Contains(word[position]))
+                    {
+                        matchesPatternSoFar = false;
+                        break;
+                    }
+                    continue; // Ignore non-letters
                 }
-                if(word.ToUpper()[position] != letter)
+
+                // Letter in the word does not match letter in the pattern
+                if (word[position] != letterFromPattern)
                 {
-                    result = false;
+                    matchesPatternSoFar = false;
                     break;
                 }
             }
-            return result;
+            return matchesPatternSoFar;
         }
 
-        private static void excludeWordsBasedOnLetters(WordSize wordSize, char[] excludedLetters, List<string> possibleWords)
+        private static void GetAllWordsAndExcludeWordsBasedOnLetters(WordSize wordSize, char[] excludedLetters, List<string> possibleWords)
         {
             switch (wordSize)
             {
